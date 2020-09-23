@@ -10,5 +10,5 @@ make build
 
 ## Run
 ```bash
-docker run --rm -it -v $(pwd):/tmp -w /tmp localgod/ansible-lint ansible-lint playbook.yml
+docker run --rm -it -v $(pwd):/tmp -w /tmp localgod/ansible-lint playbook.yml
 ```
