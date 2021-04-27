@@ -8,6 +8,12 @@ This project adheres to [Keep a CHANGELOG](http://keepachangelog.com/)
 
 ## [Unreleased]
 
+## [1.0.1] 2021-04-27
+
+### Updated
+
+-   Build scripts
+
 ## [1.0.0] 2019-08-15
 
 ### Added
