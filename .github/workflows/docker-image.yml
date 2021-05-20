@@ -20,18 +20,13 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - name: Retrieve version
-      run: |
-        echo ::set-env name=VERSION::$(cat VERSION)
-        echo ::set-env name=VCS_REF::$(git rev-parse HEAD)
-        echo ::set-env name=BUILD_DATE::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
     - name: Build and push Docker images
       uses: docker/build-push-action@v2.4.0
       with:
         build-args: |
-          BUILD_DATE=${{ env.BUILD_DATE }}
-          VCS_REF=${{ env.VCS_REF }}
-          VERSION=${{ env.VERSION }}
+          BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+          VCS_REF=$(git rev-parse HEAD)
+          VERSION=$(cat VERSION)
         push: true
         tags: localgod/ansible-lint:latest
     - name: Image digest
