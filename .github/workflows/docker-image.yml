@@ -29,6 +29,3 @@ jobs:
           VERSION=$(cat VERSION)
         push: true
         tags: localgod/ansible-lint:latest
-    - name: Image digest
-      run: echo ${{ steps.docker_build.outputs.digest }}
-
