@@ -28,10 +28,10 @@ jobs:
     - name: Build and push Docker images
       uses: docker/build-push-action@v2.4.0
       with:
-        build-args: 
-          BUILD_DATE: ${{ env.BUILD_DATE }}
-          VCS_REF: ${{ env.VCS_REF }}
-          VERSION: ${{ env.VERSION }}
+        build-args: |
+          BUILD_DATE=${{ env.BUILD_DATE }}
+          VCS_REF=${{ env.VCS_REF }}
+          VERSION=${{ env.VERSION }}
         push: true
         tags: localgod/ansible-lint:latest
     - name: Image digest
