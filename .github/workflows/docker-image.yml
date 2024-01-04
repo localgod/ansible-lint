@@ -13,6 +13,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: Set Variable using Shell Command
+      run: |
+          VERSION=$(cat VERSION)
+          echo "::set-env name=VERSION::$VERSION"
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
     - name: Login to DockerHub
@@ -37,4 +41,4 @@ jobs:
           VCS_REF=$(git rev-parse HEAD)
           VERSION=$(cat VERSION)
         push: true
-        tags: localgod/ansible-lint:$(cat VERSION)
+        tags: localgod/ansible-lint:${{ env.VERSION }}
