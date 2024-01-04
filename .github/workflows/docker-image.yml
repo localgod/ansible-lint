@@ -20,7 +20,7 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - name: Build and push Docker images
+    - name: Build and push Docker images with latest tag
       uses: docker/build-push-action@v5.1.0
       with:
         build-args: |
@@ -29,3 +29,12 @@ jobs:
           VERSION=$(cat VERSION)
         push: true
         tags: localgod/ansible-lint:latest
+    - name: Build and push Docker images with version tag
+      uses: docker/build-push-action@v5.1.0
+      with:
+        build-args: |
+          BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+          VCS_REF=$(git rev-parse HEAD)
+          VERSION=$(cat VERSION)
+        push: true
+        tags: localgod/ansible-lint:$(cat VERSION)
